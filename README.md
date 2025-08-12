@@ -91,3 +91,9 @@ Minimum environment:
 ## Install system packages (example for Debian/Ubuntu / UserLAnd)
 ```bash
 sudo apt update && sudo apt install -y python3 python3-pip git
+```
+# Install Python dependencies
+Install:
+```bash
+pip3 install -r requirements.txt
+```
