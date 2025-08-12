@@ -39,11 +39,11 @@
 
 ## Repository layout
 
-   File Structutes:
+   >**File Structutes:**
      |-- Hacker
      |   |-- BackDoor
      |   |   |-- backdoor.py
-     |   |   `-- servers.py
+     |   |   |-- servers.py
      |   |-- Banner.py
      |   |-- BlackHat.py
      |   |-- DnsResolve.py
@@ -62,12 +62,12 @@
      |   |   |-- subdomains-uk-500.txt
      |   |   |-- subdomains.txt
      |   |   |-- suffixes.txt
-     |   |   `-- tlds.txt
+     |   |   |-- tlds.txt
      |   |-- dribs.py
-     |   `-- xss.py
+     |   |-- xss.py
      |-- LICENSE
      |-- README.md
-     `-- requirement.txt"
+     |-- requirement.txt"
 ---
 ## Installation
 
