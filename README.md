@@ -38,7 +38,8 @@
 ---
 
 # Repository layout
-
+BWhacker/ ├── Hacker/ │   ├── BackDoor/ │   │   ├── backdoor.py │   │   └── servers.py │   ├── Banner.py │   ├── BlackHat.py │   ├── DnsResolve.py │   ├── dribs.py │   ├── dnscan/                 # optional submodule/tool │   ├── First.py │   ├── xss.py │   └── ...                     # other helper scripts ├── LICENSE ├── README.md ├── reader.md                    # (optional alternate docs) └── requirements.txt
+---
 ## Installation
 
 1. Clone the repo:
