@@ -37,7 +37,7 @@
 
 ---
 
-```markdown
+
 ## Repository layout
 
 ```
