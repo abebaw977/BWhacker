@@ -97,7 +97,7 @@ Install:
 ```bash
 pip3 install -r requirements.txt
 ```
-Quick start — run the interactive launcher
+## Quick start — run the interactive launcher
 
 From repo root:
 ```bash
