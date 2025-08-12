@@ -37,7 +37,10 @@
 
 ---
 
+```markdown
 ## Repository layout
+
+```
 BWhacker/
 ├── books/
 │   └── hack/
@@ -69,6 +72,7 @@ BWhacker/
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+```
 ## Installation
 
 1. Clone the repo:
