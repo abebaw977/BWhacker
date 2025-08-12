@@ -38,6 +38,9 @@
 ---
 
 ## Repository layout
+|--books
+|--books
+   |--hack
 |-- Hacker
 |   |-- BackDoor
 |   |   |-- backdoor.py
