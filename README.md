@@ -38,9 +38,10 @@
 ---
 
 # Repository layout
--|-- Hacker
--|   |-- BackDoor
--|   |   |-- backdoor.py
+""
+|-- Hacker
+|   |-- BackDoor
+|   |   |-- backdoor.py
 |   |   `-- servers.py
 |   |-- Banner.py
 |   |-- BlackHat.py
@@ -65,7 +66,7 @@
 |   `-- xss.py
 |-- LICENSE
 |-- README.md
-`-- requirement.txt
+`-- requirement.txt"
 ---
 ## Installation
 
@@ -73,3 +74,15 @@
    ```bash
    git clone https://github.com/abebaw977/BWhacker.git
    cd BWhacker
+---
+
+# Requirements & installation
+
+Minimum environment:
+- Linux-like environment (UserLAnd, Termux, Ubuntu, etc.)
+- Python 3.8+ recommended
+- pip3
+
+## Install system packages (example for Debian/Ubuntu / UserLAnd)
+```bash
+sudo apt update && sudo apt install -y python3 python3-pip git
