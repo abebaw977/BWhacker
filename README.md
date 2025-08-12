@@ -38,37 +38,37 @@
 ---
 
 ## Repository layout
-|--books
-|--books
-   |--hack
-|-- Hacker
-|   |-- BackDoor
-|   |   |-- backdoor.py
-|   |   `-- servers.py
-|   |-- Banner.py
-|   |-- BlackHat.py
-|   |-- DnsResolve.py
-|   |-- First.py
-|   |-- dnscan
-|   |   |-- Dockerfile
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dnscan.py
-|   |   |-- requirements.txt
-|   |   |-- subdomains-100.txt
-|   |   |-- subdomains-1000.txt
-|   |   |-- subdomains-10000.txt
-|   |   |-- subdomains-500.txt
-|   |   |-- subdomains-uk-1000.txt
-|   |   |-- subdomains-uk-500.txt
-|   |   |-- subdomains.txt
-|   |   |-- suffixes.txt
-|   |   `-- tlds.txt
-|   |-- dribs.py
-|   `-- xss.py
-|-- LICENSE
-|-- README.md
-`-- requirement.txt
+BWhacker/
+├── books/
+│   └── hack/
+├── Hacker/
+│   ├── BackDoor/
+│   │   ├── backdoor.py
+│   │   └── servers.py
+│   ├── Banner.py
+│   ├── BlackHat.py
+│   ├── DnsResolve.py
+│   ├── First.py
+│   ├── dnscan/
+│   │   ├── Dockerfile
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dnscan.py
+│   │   ├── requirements.txt
+│   │   ├── subdomains-100.txt
+│   │   ├── subdomains-1000.txt
+│   │   ├── subdomains-10000.txt
+│   │   ├── subdomains-500.txt
+│   │   ├── subdomains-uk-1000.txt
+│   │   ├── subdomains-uk-500.txt
+│   │   ├── subdomains.txt
+│   │   ├── suffixes.txt
+│   │   └── tlds.txt
+│   ├── dribs.py
+│   └── xss.py
+├── LICENSE
+├── README.md
+└── requirements.txt
 ## Installation
 
 1. Clone the repo:
