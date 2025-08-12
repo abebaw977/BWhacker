@@ -97,3 +97,32 @@ Install:
 ```bash
 pip3 install -r requirements.txt
 ```
+Quick start — run the interactive launcher
+
+From repo root:
+```bash
+python3 Hacker/Banner.py
+```
+Example session (simulated):
+
+$ python3 Hacker/Banner.py
+```
+************************************************************
+************************************************************
+##                     BWAbuHacker                        ###
+************************************************************
+************************************************************
+1. DNS Resolve
+2. Dribs Command
+3. XXS Attacking
+4. Developer Options
+5. to Exit enter 0
+
+Enter choice by index: 1
+ Enter target domain (e.g., example.com): testphp.vulnweb.com
+ Enter path to wordlist (e.g., subdomains.txt): ./wordlists/subdomains.txt
+🔍 Starting brute-force on: testphp.vulnweb.com
+[FOUND] www.testphp.vulnweb.com --> 54.86.44.34
+[FOUND] admin.testphp.vulnweb.com --> 54.86.44.34
+Enter choice by index:
+```
