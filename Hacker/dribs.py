@@ -10,7 +10,7 @@ c = Console()
 dirbsFile="/home/userland/Enviroments/dirb16/wordlists/"
 FU=[]
 dtarget=""
-def dribs():
+def dribsAttack():
     Found =0
     redi=0
     global dtarget
@@ -82,4 +82,4 @@ def dribs():
     c.print(f"[green][bold]Redirect: {redi} [/bold][green]")
     for fu in FU:
        c.print(f"[%] Found URL: [green]{fu}[green]")
-dribs()
+#dribs()
