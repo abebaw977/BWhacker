@@ -2,6 +2,7 @@ from abu_color import AbuAll
 from xss import XssAttack
 from dribs import dribsAttack
 from DnsResolve import subdomain_bruteforce
+
 def banner():
     for i in range(2):
         print(AbuAll("*"*60,bg="blue"))
