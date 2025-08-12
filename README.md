@@ -38,9 +38,9 @@
 ---
 
 # Repository layout
-|-- Hacker
-|   |-- BackDoor
-|   |   |-- backdoor.py
+-|-- Hacker
+-|   |-- BackDoor
+-|   |   |-- backdoor.py
 |   |   `-- servers.py
 |   |-- Banner.py
 |   |-- BlackHat.py
