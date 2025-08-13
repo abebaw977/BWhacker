@@ -52,4 +52,4 @@ def XssAttack():
             print(AbuAll(f"[+] Injection successful with: {payload}",bg="yellow",sty="b"))
         else:
             print(AbuAll(f"[-] Not working: {payload}",bg="red"))
-XssAttack()
+
