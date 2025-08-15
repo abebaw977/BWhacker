@@ -5,6 +5,7 @@ from dribs import dribsAttack
 from DnsResolve import subdomain_bruteforce
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
+from DeveloperOptions.Extractor import extractor_file
 from ScrapWeb import ScrapRunner
 def banner():
     os.system("clear")
@@ -23,7 +24,7 @@ def DeveloperOptions():
     print(AbuAll(f"##{" "*12}Wellcom To developer options{" "*12}   ###",bg="blue",sty="b"))
     for i in range(2):
         print(AbuAll("="*60,bg="blue"))
-    choice = ["Beast C++ runner","Beast File search","to Exit enter 0"]
+    choice = ["Beast C++ runner","Beast File search","Extract file","to Exit enter 0"]
     for index,ch in enumerate(choice):
         print(AbuAll(f"{str(index+1)+"."} {ch}",bg="red",sty="b"))
     while True:
@@ -34,6 +35,8 @@ def DeveloperOptions():
                    CppDev()
                 case 2:
                    TreeSearch()
+                case 3:
+                    extractor_file()
                 case 0:
                     break
                 case _:
