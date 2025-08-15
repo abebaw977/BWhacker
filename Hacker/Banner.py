@@ -5,6 +5,7 @@ from dribs import dribsAttack
 from DnsResolve import subdomain_bruteforce
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
+from ScrapWeb import ScrapRunner
 def banner():
     os.system("clear")
     for i in range(2):
@@ -12,7 +13,7 @@ def banner():
     print(AbuAll(f"##{" "*20} BWAbuHacker{" "*20}   ###",bg="blue",sty="b"))
     for i in range(2):
         print(AbuAll("*"*60,bg="blue"))
-    choice = ["DNS Resolve","Dribs Command","XXS Attacking","Developer Options","to Exit enter 0"]
+    choice = ["DNS Resolve","Dribs Command","XXS Attacking","Developer Options","Scrap web","to Exit enter 0"]
     for index,ch in enumerate(choice):
         print(AbuAll(f"{str(index+1)+"."} {ch}",bg="red",sty="b"))
 def DeveloperOptions():
@@ -52,6 +53,8 @@ def command():
                     XssAttack()
                 case 4:
                     DeveloperOptions()
+                case 5:
+                    ScrapRunner()
                 case 0:
                     break
                 case _:
