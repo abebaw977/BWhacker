@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List</title>
+  <style>
+    .todo {
+      padding: 12px 16px;
+      background: #f2f2f2;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 20px;
+    }
+    
+    .todo p:first-child {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    
+    .todo input {
+      height: 50px;
+      border-radius: 20px;
+      outline: none;
+      font-size: 20px;
+      width: 75%;
+      padding-left: 10px;
+      border: 1px solid #ddd;
+    }
+    
+    .todo button {
+      padding: 5px 15px;
+      border-radius: 50px;
+      border: 1px solid #ddd;
+      font-size: 30px;
+      color: #444;
+      background: #1CFF6B;
+    }
+    
+    .ListArea {
+      width: 100%;
+    }
+    
+    .task {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: white;
+      border-radius: 20px;
+      margin: 5px;
+    }
+    
+    .re {
+      color: red;
+      font-size: 25px;
+      font-weight: bold;
+      left: 30px;
+    }
+    
+    .value {
+      width: 100%;
+      font-size: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="todo">
+    <p>To-Do list</p>
+    <input type="text" id="inputs" />
+    <button onclick=Add()>+</button>
+    <div class="ListArea" id="ListArea">
+    </div>
+  </div>
+  <script>
+    let s = ""
+    let count = 0
+    
+    function Add() {
+      let Area = document.getElementById("ListArea");
+      let inputs = document.getElementById("inputs").value;
+      if (inputs == "") {
+        return alert("Yaha")
+      }
+      count++
+      let task = document.createElement("div")
+      let para = document.createElement("div");
+      let re = document.createElement("div")
+      re.className = "re"
+      para.className = "value";
+      task.className = "task"
+      re.onclick = () => {
+        task.remove()
+        count--;
+      }
+      
+      re.textContent = "x"
+      para.textContent = count + ". " + inputs;
+      
+      task.appendChild(para)
+      task.appendChild(re)
+      Area.appendChild(task)
+      
+      document.getElementById("inputs").value = ""
+    }
+  </script>
+</body>
+
+</html>

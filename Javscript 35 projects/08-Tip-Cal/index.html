@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tip-Calculator</title>
+  <style>
+    .tipc {
+      margin: 20px;
+      padding: 30px;
+      background: #f1f8f8;
+      border-radius: 10px;
+    }
+    
+    p:nth-child(1) {
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+    
+    .tipc input {
+      border-radius: 10px;
+      padding: 10px 15px;
+      outline: none;
+      height: 30px;
+      border: 1px solid #ddd;
+      margin: 5px;
+      font-size: 20px;
+      width: 80%;
+    }
+    
+    .tipc select {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-weight: bold;
+      margin: 5px;
+    }
+    
+    .tipc button {
+      padding: 5px 15px;
+      border-radius: 50px;
+      border: 1px solid #ddd;
+      font-size: 25px;
+      color: #444;
+      font-weight: 700;
+      margin: 10px;
+      background: #1CFF6B;
+    }
+    
+    #preuslt {
+      font-weight: 500;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tipc">
+    <p>tip-calculator</p>
+    <input type="text" id="bill" placeholder="Enter bill">
+    <select id="myDropdown">
+      <option value="5">5%</option>
+      <option value="10">10%</option>
+      <option value="15">15%</option>
+    </select>
+    <input type="text" name="Np" id="Np" placeholder="Number of people" />
+    <button onclick="TipC()">Calculate</button>
+    <p id="tip"></p>
+    <p id="ttp"></p>
+  </div>
+  
+  <script>
+    function TipC() {
+      let per = parseInt(document.getElementById("myDropdown").value)
+      let bill = parseFloat(document.getElementById("bill").value)
+      let pe = parseFloat(document.getElementById("Np").value)
+      let tip = document.getElementById("tip")
+      let ttp = document.getElementById("ttp")
+      if (isNaN(bill) || isNaN(pe) || pe === "") {
+        return alert("It is empty")
+      }
+      let tips = bill * (per / 100)
+      let tipPP = tips / pe
+      let totalPP = (bill + tips) / pe
+      
+      tip.textContent = "Tip per person: $" + tipPP.toFixed(2);
+      ttp.textContent = "Total per person: $" + totalPP.toFixed(2);
+    }
+  </script>
+</body>
+
+</html>

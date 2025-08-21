@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palindrome</title>
+  <style>
+    .palindrome{
+      margin: 20px;
+      padding: 30px;
+      background: #f1f8f8;
+      border-radius: 10px;
+    }
+    
+    input {
+      border-radius: 10px;
+      padding: 10px 15px;
+      outline: none;
+      height: 30px;
+      border: 1px solid #ddd;
+      margin: 5px;
+      font-size: 25px;
+      width: 80%;
+    }    
+    .palindrome button {
+      padding: 5px 15px;
+      border-radius: 50px;
+      border: 1px solid #ddd;
+      font-size: 30px;
+      color: #444;
+      margin: 10px;
+      background: #1CFF6B;
+    }#preuslt{
+      font-weight: 500;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="palindrome">
+    <input type="text" name="" id="pinput" />
+    <button onclick="check()">Check</button>
+    <p id=preuslt></p>
+  </div>
+  <script>
+    function check() {
+      let pi = document.getElementById("pinput").value.trim()
+      let pr = document.getElementById("preuslt")
+      let x = ""
+      
+      pi = pi.toLowerCase().replace(/\s/g, "")
+      
+      let Result = pi.split("").reverse().join("")
+      let Final = (Result == pi) ? "Yes, it’s a palindrome" : "No, not a palindrome ";
+      pr.textContent = Final
+    }
+  </script>
+</body>
+
+</html>

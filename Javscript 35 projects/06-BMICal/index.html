@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI-Calculator</title>
+  <style>
+    .bmi-cal {
+      margin: 20px;
+      padding: 30px;
+      background: #f1f8f8;
+      border-radius: 10px;
+    }
+    
+    input {
+      border-radius: 10px;
+      padding: 10px 15px;
+      outline: none;
+      height: 30px;
+      border: 1px solid #ddd;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bmi-cal">
+    <p>BMI-Calculator</p>
+    <input type="text" name="height" id="height" placeholder="Enter height" />
+    <input type="text" name="weight" id="weight" placeholder="Entet weight" />
+    <button onclick="cal()">Calculate</button>
+    <div class="val">
+      <p id="values"></p>
+      <p id="values-m"></p>
+    </div>
+  </div>
+  
+  <script>
+    function cal() {
+      let vv = document.getElementById("values")
+      let v = document.getElementById("values-m")
+      
+      let he = parseInt(document.getElementById("height").value)
+      let wi = parseInt(document.getElementById("weight").value)
+      let res = wi / he * 2
+      if (isNaN(he) || he <= 0 || isNaN(wi) || wi <= 0) {
+        vv.textContent = "Please enter valid numbers!";
+        v.textContent = "";
+        return;
+      }
+      vv.textContent = "Your BMI: "+res.toFixed(2);
+      if (res < 18.5) {
+        v.textContent = "Underweight"
+      } else if (res >= 18.5 || res <= 24.9) {
+        v.textContent = "Normal"
+      } else if (res >= 25 || res <= 29.9) {
+        v.textContent = "Overweight"
+      } else {
+        v.textContent = "Obuse"
+      }
+    }
+  </script>
+</body>
+
+</html>

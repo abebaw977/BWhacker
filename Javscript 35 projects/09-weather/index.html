@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather app</title>
+  <style>
+    .weather {
+      margin: 20px;
+      padding: 30px;
+      background: #f1f8f8;
+      border-radius: 10px;
+    }
+    
+    .weather .f{
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+    
+    .weather input {
+      border-radius: 10px;
+      padding: 10px 15px;
+      outline: none;
+      height: 30px;
+      border: 1px solid #ddd;
+      margin: 5px;
+      font-size: 20px;
+      width: 80%;
+    }
+    .weather button {
+      padding: 5px 15px;
+      border-radius: 50px;
+      border: 1px solid #ddd;
+      font-size: 25px;
+      color: #444;
+      font-weight: 700;
+      margin: 10px;
+      background: #1CFF6B;
+    }
+    
+    #data {
+      font-weight: 400;
+      padding: 15px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      background: #f9f;
+      line-height: 1.6;
+    }
+    
+    #data::before {
+      content: "Weather Report";
+      font-weight: 700;
+      font-size: 20px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="weather">
+    <p class="f">Weather</p>
+    <input type="text" name="city" id="city" placeholder="Enter city name" /><button onclick="search()">Search</button>
+    <div id="data">
+    </div>
+  </div>
+  
+  <script>
+    function search() {
+      let city = document.getElementById("city").value
+      let data = document.getElementById("data")
+      let api="You api key"
+      if (city===""){
+        return alert("Enter city")
+      }
+      fetch(`http://api.weatherapi.com/v1/current.json?key=7d4f3586e10e4c65909144016252108&q=${city}`)
+        .then(res => res.json())
+        .then(res => {
+          let city = res.location.name
+          let region = res.location.region
+          let country = res.location.country
+          let temp = res.current.condition.text
+          
+          /*data.textContent =
+            "City: " + city + "\n" +
+            "Region: " + region + "\n" +
+            "Country: " + country + "\n" +
+            "Temperature: " + temp;*/
+          data.innerHTML = `
+  <p><strong>City:</strong> ${city}</p>
+  <p><strong>Region:</strong> ${region}</p>
+  <p><strong>Country:</strong> ${country}</p>
+  <p><strong>Temperature:</strong> ${temp}</p>
+`;
+        })
+      
+    }
+  </script>
+</body>
+
+</html>

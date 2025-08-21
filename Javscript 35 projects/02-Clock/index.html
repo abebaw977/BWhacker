@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clock</title>
+  <style>
+    * {
+      margin: 10px;
+    }
+    
+    .clock {
+      background: #f1f1f1;
+      padding: 10px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
+    p:nth-child(1) {
+      font-size: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="clock">
+    <p>Clock</p>
+    <p>Date:<span id="DateCond"></span></p>
+    <p>Time:<span id="clock-value"></span></p>
+  </div>
+  <script>
+    //const now=new Date()
+    let clockValue = document.getElementById("clock-value")
+    let DataCond =document.getElementById("DateCond")
+    const now = new Date();
+    let Hours = now.getHours();
+    let Miuntes = now.getMinutes();
+    let Second = now.getSeconds();
+    let AmPm = "AM"
+    if (Hours > 12) {
+      AmPm = "PM"
+    }
+    for (let x = 0; x < 100000; x++) {
+      setTimeout(() => {
+        Second++;
+        if (Second == 60) {
+          Second = 0
+          setTimeout(() => {
+            Miuntes++;
+            console.log("Start Miuntes:", Miuntes)
+            if (Miuntes == 60) {
+              Miuntes = 0
+              setTimeout(() => {
+                Hours++;
+              }, 0)
+            }
+          }, 0)
+        }
+        clockValue.textContent = Hours + ":" + Miuntes + ":" + Second + " " + AmPm;
+      }, x * 1000)
+    }
+    const mName = now.toLocaleString('default', { month: 'long' });
+    const mNumber = now.getMonth() + 1;
+    const year = now.getFullYear();
+    const day=now.getDay();
+    DataCond.textContent=year+"/"+mNumber+""+"/"+day;
+  </script>
+</body>
+
+</html>
