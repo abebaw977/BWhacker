@@ -1,6 +1,6 @@
 import pyperclip
 import time
-from pyinput import keyboard
+from pynput import keyboard
 import psutil
 import pygetwindow as gw
 from PIL import ImageGrab
@@ -49,4 +49,3 @@ def Run():
         Copy()
     elif choice == "Clip":
         Clip()
-Run()

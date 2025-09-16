@@ -87,4 +87,5 @@ async def main():
         return
 
     await Fuzzer(url,method,files,param)
-asyncio.run(main())
+def HttpFuzzer():
+    asyncio.run(main())

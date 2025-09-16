@@ -30,6 +30,10 @@ async def Main():
     if not url or not files:
         print("Please fill all request !!")
         return
-    os.system("rm 5-result.txt")
+    try:
+        os.system("rm 5-result.txt")
+    except:
+        pass
     await BruitForce(url,files)
-asyncio.run(Main())
+def BruiteForceDir():
+    asyncio.run(Main())

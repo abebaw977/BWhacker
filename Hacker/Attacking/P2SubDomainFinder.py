@@ -48,5 +48,5 @@ async def main():
             out.write("\n".join(results) + "\n")
     print()
 
-if __name__ == "__main__":
+def SubDomain():
     asyncio.run(main())

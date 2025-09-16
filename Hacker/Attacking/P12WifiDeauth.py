@@ -42,8 +42,7 @@ def DisUser(m,a1,interface):
     sendp(packet, inter=0.01,
           count=300, iface=interface,
           verbose=1)
-if __name__ == "__main__":
-
+def WifiDeauth():
     print(" "*30,"Network status")
     print("*"*70)
     print(status())

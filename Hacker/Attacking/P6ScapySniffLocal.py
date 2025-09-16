@@ -50,5 +50,5 @@ def main():
             wrpcap(f, packets)
             print(f"Packets saved to {f}")
 
-if __name__ == "__main__":
+def ScapySniff():
     main()

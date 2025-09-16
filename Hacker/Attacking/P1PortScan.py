@@ -1,7 +1,6 @@
 
 import socket
 import asyncio
-t="wldu.edu.et"
 #s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 COMMON_PORTS = {
     20: "FTP (Data)",
@@ -60,8 +59,9 @@ COMMON_PORTS = {
     27017: "MongoDB"
 }
 
-fast = asyncio.Semaphore(2000)
+fast = asyncio.Semaphore(200)
 async def FastScan(p):
+    t=input("Enter url (example.com): ")
     async with fast:
         try:
             r,w=await asyncio.wait_for(asyncio.open_connection(t,p),timeout=4)
@@ -77,5 +77,6 @@ async def main():
     s=[FastScan(i) for i in p]
     await asyncio.gather(*s)
 
-asyncio.run(main())
+def PortScan():
+    asyncio.run(main())
 
