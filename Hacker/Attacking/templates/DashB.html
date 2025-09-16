@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard</title>
+  <style>
+    body{margin:0;font-family:sans-serif;background:#f5f5f5;color:#333;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh}
+    h2{margin:0 0 10px}
+    p{margin:0 0 20px}
+    a{padding:8px 14px;border-radius:6px;background:#e53e3e;color:#fff;text-decoration:none;font-size:14px}
+    a:hover{background:#c53030}
+  </style>
+</head>
+<body>
+  <h2>Welcome, {{ user }}!</h2>
+  <p>You have successfully logged in.</p>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

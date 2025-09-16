@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velnerable Login page</title>
+  <style>
+    body{margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#262626;color:#fff;font-family:sans-serif}
+    .card{width:100%;max-width:360px;background:#111;margin:5px;padding:20px;border-radius:10px}
+    h1{margin:0 0 10px;font-size:18px}
+    p{margin:0 0 20px;color:#aaa;font-size:13px}
+    form{display:grid;gap:10px}
+    label{font-size:12px;color:#bbb}
+    input{width:100%;padding:10px;border-radius:6px;border:1px solid #333;background:#222;color:#fff}
+    button{padding:10px;border:0;border-radius:6px;background:#6ee7b7;color:#000;font-weight:600;cursor:pointer}
+    
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <h1>Velnerable Logib page</h1>
+    <p>Sign in to continue</p>
+    <form method="POST">
+      <div>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text"/>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p style="color:red;">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <button type="submit">submit</button>
+    </form>
+  </main>
+</body>
+</html>

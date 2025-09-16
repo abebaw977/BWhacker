@@ -1,0 +1,14 @@
+https://www.google.com
+https://images.google.com
+https://cloud.google.com
+https://support.google.com
+https://home.google.com
+https://jobs.google.com
+https://news.google.com
+https://asia.google.com
+https://workspace.google.com
+https://desktop.google.com
+https://edu.google.com
+https://europe.google.com
+https://code.google.com
+https://iot.google.com

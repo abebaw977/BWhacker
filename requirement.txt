@@ -1,0 +1,4 @@
+requests
+dnspython
+rich
+abu_color
