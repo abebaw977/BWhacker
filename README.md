@@ -25,21 +25,78 @@
 
 ---
 
-# Project overview
+# BWhacker Hacker Module Overview
 
-`BWhacker` collects small, focused scripts that demonstrate common reconnaissance and simple injection testing techniques:
-- DNS subdomain discovery
-- Directory brute-force (wordlist scanning)
-- Sending payloads via POST to check basic injection indicators
-- An interactive banner/launcher that ties these tools together
+The Hacker folder in the BWhacker repository is a collection of small security and penetration-testing scripts, organized into functional categories. This module provides tools for network scanning, web reconnaissance, password testing, system exploitation, and developer utilities.
 
-**Intended use:** learning, authorized penetration testing, or lab exercises only.
+## Folder Structure & Description
+## 2. Banner.py
+  # Banner.py Overview
+
+`Banner.py` is the **main interactive launcher** for the `BWhacker` project.  
+It provides a **menu-driven interface** to run various hacking, penetration testing, and developer utility scripts in the repository.
 
 ---
 
+## Key Features
+
+1. **Interactive Menus**
+   - `banner()` — Displays the main menu with options for:
+     - Port scanning, subdomain enumeration, HTTP fuzzing
+     - Password generation & hash cracking
+     - Directory brute-force, login brute-force
+     - Web scraping, SQL injection testing
+     - Reverse shell attacker/victim
+     - Developer options
+   - `DeveloperOptions()` — Sub-menu for:
+     - C++ runner
+     - File search (`TreeSearch`)
+     - File extraction (`extractor_file`)
+
+2. **Integration with Scripts**
+   - Imports functions from:
+     - `Attacking/` scripts: `PortScan`, `SubDomain`, `HttpFuzzer`, `BruiteForceDir`, etc.
+     - `dribs.py` → `dribsAttack`
+     - `DeveloperOptions/` → `CppDev`, `TreeSearch`, `extractor_file`
+     - `ScrapWeb.py` → `ScrapRunner`
+   - Executes Bash scripts (`P10WebRecon.sh`) using `subprocess`.
+
+3. **User Input Handling**
+   - Accepts numeric choices and matches them with corresponding tool functions.
+   - Handles invalid inputs with clear warnings.
+
+4. **Visual Enhancements**
+   - Uses `AbuAll` (from `abu_color`) for styled colored terminal output.
+   - ASCII decorations to separate menus visually.
+
+5. **Exit / Looping**
+   - Both main menu and developer options menu loop until the user selects `0` to exit.
+
+---
+
+## Workflow
+
+1. Run `Banner.py`:
+```bash
+      sudo python3 Banner.py
+```
+## 2. Attacking/
+- Contains the main offensive and testing scripts
+
+  **P15AdvanceRecon.sh**	Sequentially numbered scripts for recon, scanning, fuzzing, and ePort scanning, HTTP fuzzing, Directory brute-force, web scraping, etc.)
+  
+  **VulnLogin.py** 	Vulnerable login page demo (for lab/testing purposes)
+
+  **SubD.txt, SubDomain.txt, ethiopia.txt**	Example input/wordlist files used by scripts
+
+  **templates/**	HTML templates for web-based demos (DashB.html, VulnLogin.html)
+
+
+</div>
+
+---
 
 ## Repository layout
-
 ```
 BWhacker/
 ├── books/
