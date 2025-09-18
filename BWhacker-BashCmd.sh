@@ -13,10 +13,10 @@ then
     cd ~
 fi
 read -r input "Enter pythpn env: " envs
-python3 -m venv envs
-source envs/bin/activate
+python3 -m venv $envs
+source $envs/bin/activate
 
 pip install --upgrade pip
 pip install scapy abu_color==0.2 aiohttp pyperclip PyGetWindow psutil tqdm rich
 
-echo "Installation complete. Activate environment with: source bwhacker_venv/bin/activate"
+echo "Installation complete. Activate environment with: $envs/bin/activate"
