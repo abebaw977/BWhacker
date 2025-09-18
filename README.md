@@ -1,8 +1,7 @@
 ![Description](https://github.com/abebaw977/BWhacker/blob/main/Screenshot_20250815_161616_UserLAnd.jpg)
 # BWhacker
 
-> **BWhacker** — a collection of Python utilities for security learning and testing.  
-> Use only on systems you own or have explicit written permission to test.
+> **BWhacker** — a collection of Python utilities for security learning and testing.
 
 ---
 
