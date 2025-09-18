@@ -15,6 +15,7 @@ from Attacking.P11BruiteForceLogin import BrutForceLogin
 from Attacking.P14SqlInjection import SqlAtcking
 from Attacking.P13ReverseAttacker import ReverseAttacker
 from Attacking.P13ReverseVictim import RreverseVictim
+from Attacking.P17PasswordManager import PasswordManagers
 from dribs import dribsAttack
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
@@ -58,6 +59,7 @@ def banner():
         "Arp spoofing ",
         "Wifi Deauthenticaion",
         "Reverse Hacking Attacker<=>Victim Two file",
+        "Password Manager",
         "to Exit enter 0"
         ]
     for index,ch in enumerate(choice):
@@ -141,6 +143,8 @@ def command():
             run ReverseVictim on the target device to connect back 
             and exchange commands/files  
                     """)
+                case 18:
+                    PasswordManagers()
                 case 0:
                     break
                 case _:
