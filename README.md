@@ -1,27 +1,22 @@
-![Description](https://github.com/abebaw977/BWhacker/blob/main/Screenshot_20250815_161616_UserLAnd.jpg)
+![Description](https://github.com/abebaw977/BWhacker/Bwhacker/Screenshot_20250815_161616_UserLAnd.jpg)
 # BWhacker
 
 > **BWhacker** — a collection of Python utilities for security learning and testing.
 
 ---
-
-# Table of contents
-
-1. [Project overview](#project-overview)  
-2. [Repository layout](#repository-layout)  
-3. [Requirements & installation](#requirements--installation)  
-4. [Quick start — run the interactive launcher](#quick-start---run-the-interactive-launcher)  
-5. [Module reference and deep usage examples (with terminal output samples)](#module-reference-and-deep-usage-examples-with-terminal-output-samples)  
-   - [DnsResolve — subdomain brute-force](#dnsresolve---subdomain-brute-force)  
-   - [dribs — dirb-like directory scan](#dribs---dirb-like-directory-scan)  
-   - [xss — payload POST testing](#xss---payload-post-testing)  
-   - [Banner — interactive launcher and menu](#banner---interactive-launcher-and-menu)  
-6. [Wordlists & example files](#wordlists--example-files)  
-7. [Troubleshooting & common errors](#troubleshooting--common-errors)  
-8. [Security, ethics & legal](#security-ethics--legal)  
-9. [Development & contributing guide](#development--contributing-guide)  
-10. [FAQ](#faq)  
-11. [Changelog, credits & license](#changelog-credits--license)
+## Table of Contents
+1. [Installation](#installation)
+2. [Requirements & Setup](#requirements--setup)
+3. [Tools Overview](#tools-overview)
+    - [Banner.py](#bannerpy)
+    - [ScrapWeb.py](#scrapwebpy)
+    - [dribs.py](#dribspy)
+    - [Attacking/](#attacking)
+4. [Usage](#usage)
+5. [Developer Options](#developer-options)
+6. [Security & Ethics](#security--ethics)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ---
 
@@ -280,4 +275,9 @@ Enter choice by index: 1
 [FOUND] www.testphp.vulnweb.com --> 54.86.44.34
 [FOUND] admin.testphp.vulnweb.com --> 54.86.44.34
 Enter choice by index:
+
+
+
+
+
 ```
