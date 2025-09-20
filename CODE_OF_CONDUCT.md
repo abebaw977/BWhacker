@@ -10,7 +10,6 @@ This file explains how to contact the project maintainer, report security issues
 - **GitHub:** https://github.com/abebaw977
 - **Preferred contact:** Open a GitHub Issue (label `support` or `question`) or open a Pull Request for suggested fixes.
 - **Email (optional):** abebawgetaye620@gmail.com 
-  *(Replace the placeholder with a real address if you want email contact.)*
 
 > Best way: create a GitHub Issue so the conversation is public, traceable, and linked to the repo.
 
