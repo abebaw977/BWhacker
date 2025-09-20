@@ -3,19 +3,20 @@ import subprocess
 from abu_color import AbuAll
 from Attacking.P1PortScan import PortScan
 from Attacking.P2SubDomainFinder import SubDomain
-#from Attacking.P3Keylogger import Run
+from Attacking.P3Keylogger import Run
 from Attacking.P4HttpFuzzer import HttpFuzzer
 from Attacking.P5BruitForceDirectory import BruiteForceDir
-#from Attacking.P6ScapySniffLocal import ScapySniff
-#from Attacking.P7ArpSpoofing import ArpSpoof
+from Attacking.P6ScapySniffLocal import ScapySniff
+from Attacking.P7ArpSpoofing import ArpSpoof
 from Attacking.P8HashPasswordCrack import HashPassC
 from Attacking.P9PasswordGen import PasswordGen
 from Attacking.P11BruiteForceLogin import BrutForceLogin
-#from Attacking.P12WifiDeauth import WifiDeauth
+from Attacking.P12WifiDeauth import WifiDeauth
 from Attacking.P14SqlInjection import SqlAtcking
 from Attacking.P13ReverseAttacker import ReverseAttacker
 from Attacking.P13ReverseVictim import RreverseVictim
-from Attacking.P17PasswordManager import PasswordManagers
+from Attacking.P16PasswordManager import PasswordManagers
+from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
 from dribs import dribsAttack
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
@@ -58,6 +59,7 @@ def banner():
         "Sniff loacl packet",
         "Arp spoofing ",
         "Wifi Deauthenticaion",
+        "Advance ARP spoofing and sniffing"
         "Reverse Hacking Attacker<=>Victim Two file",
         "Password Manager",
         "to Exit enter 0"
@@ -133,6 +135,8 @@ def command():
                 case 16:
                     WifiDeauth()
                 case 17:
+                    ArpSpoofAndSnoffing()
+                case 18:
                     print("""
     ReverseAttacker => Listens for a connection, sends commands, 
             and can download files from the connected host.
@@ -143,8 +147,8 @@ def command():
             run ReverseVictim on the target device to connect back 
             and exchange commands/files  
                     """)
-                case 18:
-                    PasswordManagers()
+                case 19:
+                    PasswordManagers
                 case 0:
                     break
                 case _:
