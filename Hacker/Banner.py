@@ -17,6 +17,7 @@ from Attacking.P13ReverseAttacker import ReverseAttacker
 from Attacking.P13ReverseVictim import RreverseVictim
 from Attacking.P16PasswordManager import PasswordManagers
 from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
+from Attacking.P18Steganography import SryphtoSecretData
 from dribs import dribsAttack
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
@@ -62,6 +63,7 @@ def banner():
         "Advance ARP spoofing and sniffing"
         "Reverse Hacking Attacker<=>Victim Two file",
         "Password Manager",
+        "Steganography Tool to hide data on image or audio"
         "to Exit enter 0"
         ]
     for index,ch in enumerate(choice):
@@ -149,13 +151,14 @@ def command():
                     """)
                 case 19:
                     PasswordManagers
+                case 20:
+                    SryphtoSecretData()
                 case 0:
                     break
                 case _:
                     print("Invalid Value")
         except ValueError:
             print(AbuAll("Enter only number,try again",bg="yellow",sty="b"))
-    # end match
 if __name__ == "__main__": 
     banner()
     command()
