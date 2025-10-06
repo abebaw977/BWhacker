@@ -5,20 +5,27 @@ from Attacking.P1PortScan import PortScan
 from Attacking.P2SubDomainFinder import SubDomain
 from Attacking.P4HttpFuzzer import HttpFuzzer
 from Attacking.P5BruitForceDirectory import BruiteForceDir
-from Attacking.P8HashPasswordCrack import HashPassC             from Attacking.P9PasswordGen import PasswordGen
+from Attacking.P8HashPasswordCrack import HashPassC
+from Attacking.P9PasswordGen import PasswordGen
 from Attacking.P11BruiteForceLogin import BrutForceLogin
-from Attacking.P14SqlInjection import SqlAtcking                from Attacking.P13ReverseAttacker import ReverseAttacker
+from Attacking.P14SqlInjection import SqlAtcking
+from Attacking.P13ReverseAttacker import ReverseAttacker
 from Attacking.P13ReverseVictim import RreverseVictim
 from Attacking.P16PasswordManager import PasswordManagers
-from Attacking.P18Steganography import SryphtoSecretData        from Attacking.P19AdvReverseAt import ReverseAttacker as AdvReverseAttacker
+from Attacking.P18Steganography import SryphtoSecretData
+from Attacking.P19AdvReverseAt import ReverseAttacker as AdvReverseAttacker
 from Attacking.P19AdvReverseVi import ReverseV
-from dribs import dribsAttack                                   from DeveloperOptions.Tree import TreeSearch
+from dribs import dribsAttack
+from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
 from DeveloperOptions.Extractor import extractor_file
 from ScrapWeb import ScrapRunner
-from Attacking.P6ScapySniffLocal import ScapySniff              from Attacking.P7ArpSpoofing import ArpSpoof
+from Attacking.P6ScapySniffLocal import ScapySniff
+from Attacking.P7ArpSpoofing import ArpSpoof
 from Attacking.P12WifiDeauth import WifiDeauth
 from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
+
+
 
 def webRecon():
     try:
