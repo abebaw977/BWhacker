@@ -167,61 +167,70 @@ Utilities aimed at developers or automation:
 
 ## Repository layout
 ```
-|-- BWhacker
-|   |-- Hacker
-|   |   |-- Attacking
-|   |   |   |-- DataBase.py
-|   |   |   |-- Database.php
-|   |   |   |-- Login.py
-|   |   |   |-- P10WebRecon.sh
-|   |   |   |-- P11BruiteForceLogin.py
-|   |   |   |-- P12WifiDeauth.py
-|   |   |   |-- P13ReverseAttacker.py
-|   |   |   |-- P13ReverseVictim.py
-|   |   |   |-- P14SqlInjection.py
-|   |   |   |-- P15AdvanceRecon.sh
-|   |   |   |-- P17PasswordManager.py
-|   |   |   |-- P1PortScan.py
-|   |   |   |-- P2SubDomainFinder.py
-|   |   |   |-- P3Keylogger.py
-|   |   |   |-- P4HttpFuzzer.py
-|   |   |   |-- P5BruitForceDirectory.py
-|   |   |   |-- P6ScapySniffLocal.py
-|   |   |   |-- P7ArpSpoofing.py
-|   |   |   |-- P8HashPasswordCrack.py
-|   |   |   |-- P9PasswordGen.py
-|   |   |   |-- SubD.txt
-|   |   |   |-- SubDomain.txt
-|   |   |   |-- VulnLogin.py
-|   |   |   |-- ethiopia.txt
-|   |   |   `-- templates
-|   |   |       |-- DashB.html
-|   |   |       `-- VulnLogin.html
-|   |   |-- Banner.py
-|   |   |-- BlackHat.py
-|   |   |-- DeveloperOptions
-|   |   |   |-- CppRunner.py
-|   |   |   |-- Extractor.py
-|   |   |   `-- Tree.py
-|   |   |-- DnsScan
-|   |   |   |-- requirements.txt
-|   |   |   |-- subdomains-100.txt
-|   |   |   |-- subdomains-1000.txt
-|   |   |   |-- subdomains-10000.txt
-|   |   |   |-- subdomains-500.txt
-|   |   |   |-- subdomains-uk-1000.txt
-|   |   |   |-- subdomains-uk-500.txt
-|   |   |   |-- subdomains.txt
-|   |   |   |-- suffixes.txt
-|   |   |   `-- tlds.txt
-|   |   |-- ScrapWeb.py
-|   |   |-- SubD.txt
-|   |   |-- dribs.py
-|   |   `-- index.html
-|   |-- LICENSE
-|   |-- README.md
-|   |-- Screenshot_20250916_145958_UserLAnd.jpg
-|   `-- requirement.txt
+├── 30JS-Projects
+│   ├── CSS.zip
+│   ├── HTMl.zip
+│   ├── img
+│   │   ├── img1.jpg
+│   │   ├── img2.jpg
+│   │   └── img3.png
+│   └── js
+│       └── script.js
+├── CODE_OF_CONDUCT.md
+├── Hacker
+│   ├── Attacking
+│   │   ├── DataBase.py
+│   │   ├── Database.php
+│   │   ├── Login.py                                                          │   │   ├── P10WebRecon.sh
+│   │   ├── P11BruiteForceLogin.py
+│   │   ├── P12WifiDeauth.py                                                  │   │   ├── P13ReverseAttacker.py
+│   │   ├── P13ReverseVictim.py
+│   │   ├── P14SqlInjection.py
+│   │   ├── P15AdvanceRecon.sh
+│   │   ├── P16PasswordManager.py
+│   │   ├── P17AdvancedArpSpoofing.py
+│   │   ├── P18Steganography.py
+│   │   ├── P19AdvReverseAt.py
+│   │   ├── P19AdvReverseVi.py
+│   │   ├── P1PortScan.py
+│   │   ├── P2SubDomainFinder.py
+│   │   ├── P3Keylogger.py
+│   │   ├── P4HttpFuzzer.py
+│   │   ├── P5BruitForceDirectory.py
+│   │   ├── P6ScapySniffLocal.py
+│   │   ├── P7ArpSpoofing.py
+│   │   ├── P8HashPasswordCrack.py
+│   │   ├── P9PasswordGen.py
+│   │   ├── SubD.txt
+│   │   ├── SubDomain.txt
+│   │   ├── VulnLogin.py
+│   │   ├── ethiopia.txt
+│   │   └── templates
+│   │       ├── DashB.html
+│   │       └── VulnLogin.html
+│   ├── Banner.py
+│   ├── DeveloperOptions
+│   │   ├── CppRunner.py
+│   │   ├── Extractor.py
+│   │   └── Tree.py
+│   ├── DnsScan
+│   │   ├── requirements.txt
+│   │   ├── subdomains-100.txt
+│   │   ├── subdomains-1000.txt
+│   │   ├── subdomains-10000.txt
+│   │   ├── subdomains-500.txt
+│   │   ├── subdomains-uk-1000.txt
+│   │   ├── subdomains-uk-500.txt
+│   │   ├── subdomains.txt
+│   │   ├── suffixes.txt
+│   │   └── tlds.txt
+│   ├── ScrapWeb.py
+│   ├── SubD.txt
+│   └── dribs.py
+├── LICENSE
+├── README.md
+├── banner.jpg
+└── requirement.txt
 ```
 ## Installation
 
