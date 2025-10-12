@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 from abu_color import AbuAll
 from Attacking.P1PortScan import PortScan
@@ -25,7 +26,9 @@ from Attacking.P7ArpSpoofing import ArpSpoof
 from Attacking.P12WifiDeauth import WifiDeauth
 from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
 
-
+if os.geteuid() != 0:
+    print("This script requires root privileges to use scapy.")
+    sys.exit(1)
 
 def webRecon():
     try:
