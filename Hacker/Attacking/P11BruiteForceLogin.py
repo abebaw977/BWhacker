@@ -55,4 +55,3 @@ def BrutForceLogin():
 
     print(f"\n[-] Completed {c} attempts. No valid credentials found.")
 
-BrutForceLogin()
