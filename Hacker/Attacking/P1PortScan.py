@@ -1,4 +1,3 @@
-
 import socket
 import asyncio
 #s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -59,9 +58,8 @@ COMMON_PORTS = {
     27017: "MongoDB"
 }
 
-fast = asyncio.Semaphore(200)
-async def FastScan(p):
-    t=input("Enter url (example.com): ")
+fast = asyncio.Semaphore(5000)
+async def FastScan(t,p):
     async with fast:
         try:
             r,w=await asyncio.wait_for(asyncio.open_connection(t,p),timeout=4)
@@ -69,14 +67,15 @@ async def FastScan(p):
                 print(f"[*] PORT=> {p} OPEN {COMMON_PORTS[p]}")
             w.close()
             await w.wait_closed()
-            #print(f"[-] PORT=> {x} CLOSE")
         except Exception as e:
             pass
 async def main():
+    t=input("Enter url (example.com): ")
     p = range(20,5000)
-    s=[FastScan(i) for i in p]
+    s=[FastScan(t,i) for i in p]
     await asyncio.gather(*s)
-
+    print("Port scannig Fnished")
 def PortScan():
     asyncio.run(main())
+
 
