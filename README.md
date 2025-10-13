@@ -12,7 +12,7 @@
 4. [Repository Structure](#repository-structure)
 5. [Core Modules](#core-modules)
     - [Banner.py (Launcher)](#bannerpy-launcher)
-    - [Attacking Suite](#attacking-suite)
+    - [Attacking Suite (P1–P20)](#attacking-suite-p1p20)
     - [Dribs Directory Brute-Forcer](#dribs-directory-brute-forcer)
     - [Steganography Tools](#steganography-tools)
     - [Reverse Shells](#reverse-shells)
@@ -21,18 +21,23 @@
     - [Database & Vulnerable Login](#database--vulnerable-login)
 6. [Advanced Usage](#advanced-usage)
 7. [Sample Workflows](#sample-workflows)
-8. [Customization & Extension](#customization--extension)
-9. [Module API Reference](#module-api-reference)
-10. [Troubleshooting & FAQ](#troubleshooting--faq)
-11. [Contributing](#contributing)
-12. [License](#license)
-13. [Credits](#credits)
+8. [Extensive Examples](#extensive-examples)
+9. [Customization & Extension](#customization--extension)
+10. [Module API Reference](#module-api-reference)
+11. [Troubleshooting & FAQ](#troubleshooting--faq)
+12. [Contributing](#contributing)
+13. [License](#license)
+14. [Credits](#credits)
+15. [Appendix: Output Snapshots](#appendix-output-snapshots)
+16. [Appendix: Test Scenarios](#appendix-test-scenarios)
+17. [Appendix: Developer Notes](#appendix-developer-notes)
+18. [Appendix: Full Example Scripts](#appendix-full-example-scripts)
 
 ---
 
 ## Project Overview
 
-**BWhacker** is an advanced, modular Python toolkit for security research, penetration testing, network analysis, password attacks, steganography, web automation, and developer productivity.  
+**BWhacker** is an advanced, modular Python toolkit for security research, penetration testing, network analysis, password attacks, steganography, phishing simulation, web automation, and developer productivity.  
 The toolkit is designed to be both accessible for learners and powerful for professionals, with a focus on extensibility, interactive usage, and deep feature coverage.
 
 ---
@@ -53,7 +58,10 @@ The toolkit is designed to be both accessible for learners and powerful for prof
 - Python 3.8+
 - pip
 - MySQL (for database modules)
-- Optional: GCC/C++ (for developer utilities), scapy (for packet manipulation)
+- Optional: GCC/C++ (for developer utilities)
+- Optional: scapy (for packet manipulation)
+- Optional: Flask (for web modules)
+- Optional: Pillow & wave (for steganography)
 
 ### Install AbuColor (for colored output)
 
@@ -66,6 +74,12 @@ pip install abu-color
 ```bash
 git clone https://github.com/abebaw977/BWhacker.git
 cd BWhacker
+```
+
+### Install Additional Dependencies
+
+```bash
+pip install requests rich flask mysql-connector-python pillow tqdm scapy aiohttp
 ```
 
 ### Run the Interactive Launcher
@@ -88,25 +102,28 @@ BWhacker/
 │   ├── Banner.py                # Main interactive launcher
 │   ├── dribs.py                 # Directory brute-forcer
 │   └── Attacking/
-│       ├── P1PortScan.py        # Async port scanner
-│       ├── P2SubDomainFinder.py # Subdomain reconnaissance
-│       ├── P4HttpFuzzer.py      # HTTP endpoint fuzzer
-│       ├── P5BruitForceDirectory.py
-│       ├── P8HashPasswordCrack.py
-│       ├── P9PasswordGen.py
-│       ├── P11BruiteForceLogin.py
-│       ├── P13ReverseAttacker.py
-│       ├── P13ReverseVictim.py
-│       ├── P14SqlInjection.py
-│       ├── P16PasswordManager.py
-│       ├── P18Steganography.py
-│       ├── P19AdvReverseAt.py
-│       ├── P19AdvReverseVi.py
-│       ├── P6ScapySniffLocal.py
-│       ├── P7ArpSpoofing.py
-│       ├── P12WifiDeauth.py
-│       ├── P17AdvancedArpSpoofing.py
-│       └── ... (more)
+│       ├── P1PortScan.py              # Async port scanner
+│       ├── P2SubDomainFinder.py       # Subdomain reconnaissance
+│       ├── P4HttpFuzzer.py            # HTTP endpoint fuzzer
+│       ├── P5BruitForceDirectory.py   # Directory brute-forcer
+│       ├── P6ScapySniffLocal.py       # Packet sniffing
+│       ├── P7ArpSpoofing.py           # ARP spoofing
+│       ├── P8HashPasswordCrack.py     # Hash password cracking
+│       ├── P9PasswordGen.py           # Password generator
+│       ├── P10WebRecon.sh             # Bash web recon script
+│       ├── P11BruiteForceLogin.py     # Login brute-force
+│       ├── P12WifiDeauth.py           # WiFi deauthentication attack
+│       ├── P13ReverseAttacker.py      # Reverse shell attacker
+│       ├── P13ReverseVictim.py        # Reverse shell victim
+│       ├── P14SqlInjection.py         # SQL injection
+│       ├── P16PasswordManager.py      # Password manager
+│       ├── P17AdvancedArpSpoofing.py  # Advanced ARP spoofing/sniffing
+│       ├── P18Steganography.py        # Steganography (image/audio)
+│       ├── P19AdvReverseAt.py         # Advanced reverse attacker (file transfer, control)
+│       ├── P19AdvReverseVi.py         # Advanced reverse victim
+│       ├── P20PhishingStimulation.py  # Phishing simulation module
+│       ├── DataBase.py                # MySQL database setup
+│       ├── VulnLogin.py               # Vulnerable login for testing
 │   ├── ScrapWeb.py              # Web scraper
 │   ├── DeveloperOptions/
 │       ├── Tree.py
@@ -123,19 +140,16 @@ BWhacker/
 
 ### Banner.py (Launcher)
 
-The primary entrypoint for BWhacker is `Banner.py`.  
-It provides a dynamic, menu-driven interface to all major modules, categorized into Attacking Tools, Sniff Tools, Web Tools, Developer Tools, and Others.
+The interactive CLI launcher for all modules, with dynamic menus and colored output using AbuColor.
 
-**Features:**
-
-- ASCII art banner, colored UI (AbuAll)
-- Handles user input, numeric choices, error handling
-- Loops until user exits
-- Imports & executes all attack, utility, and developer scripts
-- Launches Bash scripts for web reconnaissance
+- **Features:**  
+    - ASCII art banner, colored UI  
+    - User input handling, error management  
+    - Loops until user exits  
+    - Imports & executes all attack, phishing, utility, and developer scripts  
+    - Launches Bash scripts for web reconnaissance
 
 **Example Main Menu:**
-
 ```
 [1] Attacking Tools
 [2] Sniff Tools
@@ -144,66 +158,109 @@ It provides a dynamic, menu-driven interface to all major modules, categorized i
 [0] Exit
 ```
 
-Selecting a category reveals sub-options mapped directly to core modules.
-
 ---
 
-### Attacking Suite
+### Attacking Suite (P1–P20)
 
-A collection of advanced penetration testing modules, including:
+A collection of advanced penetration testing modules. Now including:
 
-- **P1PortScan.py**: Asynchronous port scanner, scans 20–5000 ports, identifies protocols.
-- **P2SubDomainFinder.py**: Finds subdomains of a target domain.
-- **P4HttpFuzzer.py**: Fuzzes HTTP endpoints with custom payloads.
-- **P5BruitForceDirectory.py**: Brute-forces directories on web servers.
-- **P8HashPasswordCrack.py**: Cracks password hashes using wordlists.
-- **P9PasswordGen.py**: Generates strong passwords, analyzes strength and crack time.
-- **P11BruiteForceLogin.py**: Brute-forces login pages.
-- **P13ReverseAttacker.py & P13ReverseVictim.py**: Classic reverse shell implementation.
-- **P14SqlInjection.py**: SQL injection attacks for login bypass.
-- **P16PasswordManager.py**: Simple password manager.
-- **P18Steganography.py**: Hide/reveal messages in images and audio files.
-- **P19AdvReverseAt.py & P19AdvReverseVi.py**: Advanced reverse shell with file transfer, logging.
-- **P6ScapySniffLocal.py**: Local packet sniffing using scapy.
-- **P7ArpSpoofing.py**: ARP spoofing for MITM.
-- **P12WifiDeauth.py**: WiFi deauthentication attacks.
-- **P17AdvancedArpSpoofing.py**: Combined ARP spoofing and sniffing.
+- **P20PhishingStimulation.py:** Simulate phishing attacks for training, awareness, and testing.  
+  _Features:_ Email spoofing, fake login page generation, credential capture (test/lab), reporting.
 
-Each module is scriptable and can be run interactively from Banner.py or imported directly in Python code.
+Other modules span:
+
+- Port scan, subdomain enumeration, HTTP fuzzing, directory brute-force, hash cracking, password generation, login brute-force, SQL injection, reverse shells, password manager, steganography (image/audio), ARP/WiFi attacks, advanced reverse/file transfer, and more.
 
 ---
 
 ### Dribs Directory Brute-Forcer
 
-`dribs.py` offers multithreaded brute-forcing of web directories using custom wordlists.
+Multithreaded brute-forcing of web directories using custom wordlists.  
+Auto-detects environment (Termux, Userland, Linux, local).
 
-**Workflow:**
+---
 
-1. Enter target URL (default: testphp.vulnweb.com)
-2. Select wordlist from local directory
-3. Launch up to 100 threads for rapid brute-forcing
-4. Results are displayed and colored for easy review
+### Steganography Tools
 
-**Code Example:**
+Hide and reveal messages in images (.png, .bmp) and audio (.wav).
+
+---
+
+### Reverse Shells
+
+Classic and advanced reverse shells, including bidirectional command/control, file upload/download, and persistent logging.
+
+---
+
+### Web Scraping Automation
+
+Targeted web scraping, URL extraction, and content search with ScrapWeb.py.
+
+---
+
+### Developer Utilities
+
+- C++ runner (compile & run C++ from CLI)
+- File tree search
+- Universal file extractor
+
+---
+
+### Database & Vulnerable Login
+
+- MySQL integration for lab environments
+- Vulnerable login system for SQLi testing and training
+
+---
+
+## Advanced Usage
+
+All modules can be executed interactively via Banner.py or imported and used directly in Python scripts.
+
+**Example:**  
+```python
+from Attacking.P20PhishingStimulation import PhishingAttack
+PhishingAttack()
+```
+
+---
+
+## Sample Workflows
+
+### Example 1: Full Pen-Test Chain
+
+```python
+from Attacking.P2SubDomainFinder import SubDomain
+from Attacking.P1PortScan import PortScan
+from Attacking.P5BruitForceDirectory import BruiteForceDir
+from Attacking.P4HttpFuzzer import HttpFuzzer
+from Attacking.P14SqlInjection import SqlAtcking
+from Attacking.P11BruiteForceLogin import BrutForceLogin
+from Attacking.P8HashPasswordCrack import HashPassC
+from Attacking.P9PasswordGen import PasswordGen
+from Attacking.P13ReverseAttacker import ReverseAttacker
+from Attacking.P13ReverseVictim import RreverseVictim
+
+SubDomain("target.com")
+PortScan("target.com")
+BruiteForceDir("target.com")
+HttpFuzzer()
+SqlAtcking("target.com/login")
+BrutForceLogin()
+HashPassC("hashes.txt", "wordlist.txt")
+PasswordGen()
+ReverseAttacker()
+RreverseVictim()
+```
+
+### Example 2: Directory Brute-Force with Dribs
 
 ```python
 from Hacker.dribs import dribsAttack
 dribsAttack()
 ```
 
----
-
-### Steganography Tools
-
-Hide and reveal messages in images (.png, .bmp) and audio files (.wav) for covert communication or CTF practice.
-
-**Features:**
-
-- Image steganography: Embed and extract messages in pixel LSBs
-- Audio steganography: Embed and extract messages in audio frames
-- File format checks and error handling
-
-**Code Example:**
+### Example 3: Steganography
 
 ```python
 from Attacking.P18Steganography import HideData, DecodeI
@@ -211,229 +268,103 @@ HideData("input.png", "Secret message", "output.png")
 DecodeI("output.png")
 ```
 
----
+### Example 4: Phishing Simulation (P20)
 
-### Reverse Shells
+```python
+from Attacking.P20PhishingStimulation import PhishingAttack
+PhishingAttack()
+```
 
-BWhacker includes classic and advanced reverse shells:
+### Example 5: C++ Developer Utility
 
-- **ReverseAttacker.py / ReverseVictim.py**: Simple shell, command execution.
-- **P19AdvReverseAt.py / P19AdvReverseVi.py**: File upload/download, logging, persistent connection.
+```python
+from DeveloperOptions.CppRunner import CppDev
+CppDev()
+```
 
-**Usage:**
+### Example 6: WiFi Deauthentication
 
-1. Run Attacker module on your device, listening on a port.
-2. Run Victim module on target, connect back.
-3. Send commands, upload/download files, log all interactions.
+```python
+from Attacking.P12WifiDeauth import WifiDeauth
+WifiDeauth()
+```
 
----
+### Example 7: SQL Injection Vulnerability Test
 
-### Web Scraping Automation
+```python
+from Attacking.VulnLogin import login
+login()
+```
 
-`ScrapWeb.py` is a flexible web scraper:
-
-- Downloads HTML content from any URL
-- Extracts all URLs containing "https"
-- Searches for specific text in web content
-- Interactive menu for easy operation
-
-**Code Example:**
+### Example 8: Web Scraping
 
 ```python
 from ScrapWeb import ScrapRunner
 ScrapRunner()
 ```
 
----
-
-### Developer Utilities
-
-- **CppRunner.py**: Run C++ code from Python interface.
-- **Tree.py**: Fast file tree search—find files in large directories.
-- **Extractor.py**: Extract contents from compressed archive files.
-
----
-
-### Database & Vulnerable Login
-
-- **Attacking/DataBase.py**: MySQL database connection, table creation for hacking labs.
-- **Attacking/VulnLogin.py**: Vulnerable Flask login app for SQL injection practice.
-
-**Example Vulnerable Login:**
+### Example 9: Advanced Reverse Shell File Transfer
 
 ```python
-@app.route("/login/",methods=["GET","POST"])
-def login():
-    # SQL injection vulnerable query
-    sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
-    cur.execute(sql)
+from Attacking.P19AdvReverseAt import ReverseAttacker
+from Attacking.P19AdvReverseVi import ReverseV
+
+ReverseAttacker()
+ReverseV()
+```
+
+### Example 10: ARP Spoofing
+
+```python
+from Attacking.P7ArpSpoofing import ArpSpoof
+ArpSpoof()
+```
+
+### Example 11: Password Management
+
+```python
+from Attacking.P16PasswordManager import PasswordManagers
+PasswordManagers()
+```
+
+### Example 12: Extractor Utility
+
+```python
+from DeveloperOptions.Extractor import extractor_file
+extractor_file()
+```
+
+### Example 13: Tree Search Utility
+
+```python
+from DeveloperOptions.Tree import TreeSearch
+TreeSearch()
 ```
 
 ---
 
-## Advanced Usage
+## Extensive Examples
 
-### Import Modules Directly
-
-All attack and utility scripts can be imported and used programmatically:
-
-```python
-from Attacking.P9PasswordGen import PasswordGen
-PasswordGen()
-```
-
-### Run Banner.py for Interactive CLI
+### CLI Example: Using Banner.py
 
 ```bash
 sudo python3 Hacker/Banner.py
 ```
+_Navigate the interactive menu and select tools to run._
 
 ---
 
-## Sample Workflows
-
-### Full Attack Chain Example
-
-1. **Reconnaissance**: SubdomainFinder → PortScan → Directory Brute-Force
-2. **Web Attacks**: HTTP Fuzzer → SQL Injection → Login Brute-Force
-3. **Credential Exploitation**: HashPasswordCrack → PasswordGen
-4. **Post-Exploitation**: Reverse Shell Attacker/Victim
-5. **Data Exfiltration**: Steganography (Hide in image/audio)
-
-### Example Script
-
-```python
-from Attacking.P1PortScan import PortScan
-PortScan()
-from Attacking.P5BruitForceDirectory import BruiteForceDir
-BruiteForceDir()
-from Attacking.P13ReverseAttacker import ReverseAttacker
-ReverseAttacker()
-```
-
----
-
-## Customization & Extension
-
-- Add your own Python scripts to the `Hacker/Attacking/` directory and import in Banner.py.
-- Extend the interactive menu by editing Banner.py and tool_sections.
-- Modify wordlist paths, output styles, or logging formats as needed.
-
----
-
-## Module API Reference
-
-### PortScan
-
-**Function:** PortScan()  
-**Description:** Asynchronous port scanner for 20–5000 ports.
-
-### DribsAttack
-
-**Function:** dribsAttack()  
-**Description:** Multithreaded brute-forcer; requires wordlist files.
-
-### HideData / DecodeI
-
-**Functions:** HideData(img_path, message, out_path), DecodeI(img_path)  
-**Description:** Hide or reveal messages in images.
-
-### PasswordGen
-
-**Function:** PasswordGen()  
-**Description:** Generates and rates password strength.
-
-**...** (see source code for full function signatures and usage)
-
----
-
-## Troubleshooting & FAQ
-
-**Q:** Why do some modules require sudo?
-**A:** Network sniffing, ARP spoofing, and deauth attacks need root privileges.
-
-**Q:** MySQL errors?
-**A:** Ensure MySQL server is running, credentials are correct, and required Python modules are installed.
-
-**Q:** How do I add custom wordlists?
-**A:** Place your wordlist files in the directory specified in dribs.py (`dirbsFile` variable).
-
-**Q:** How to extend the toolkit?
-**A:** Add scripts, update Banner.py, and follow the existing module template.
-
----
-
-## Contributing
-
-- Fork the repo, create a feature branch, submit PRs.
-- Report issues in the GitHub Issues section.
-- Follow best practices for Python scripting and security research.
-
----
-
-## License
-
-BSD 3-Clause "New" or "Revised" License.  
-See [LICENSE](LICENSE).
-
----
-
-## Credits
-
-- Project by [abebaw977](https://github.com/abebaw977)
-- AbuAll colors by [abu-color](https://pypi.org/project/abu-color/)
-- Inspired by open-source hacking tools and CTF labs.
-
----
-
-## Appendix: Full Menu Example
-
-```
-[1] Attacking Tools
-    [1] Directory Brute-Force
-    [2] Hash Password Crack
-    [3] Password Generator
-    [4] Login Brute-Force
-    [5] SQL Injection
-    [6] Reverse Attacker
-    [7] Reverse Victim
-    [8] Advanced Reverse Attacker
-    [9] Advanced Reverse Victim
-    [10] Dribs Command
-    [11] Password Manager
-    [12] Steganography Tool
-[2] Sniff Tools
-    [1] Local Packet Sniff
-    [2] ARP Spoofing
-    [3] Wifi Deauthentication
-    [4] Advanced ARP Spoofing & Sniffing
-[3] Developer Tools
-    [1] C++ Runner
-    [2] File Search
-    [3] Extract File
-[4] Web Tools
-    [1] Port Scanning
-    [2] Subdomain Finder
-    [3] HTTP Request Fuzzer
-    [4] Web Scraper
-    [5] Web Reconnaissance
-```
-
----
-
-## Example Output (PasswordGen)
+### Output Example: Password Generator
 
 ```text
-Enter password length: 12
-Enter options (eg, letter=y or n, symbol=..., num=...): y y y
-[*] Generated password: aB8@#zLq2!Xv
+Enter password length: 16
+Enter options (letter=y, symbol=y, num=y): y y y
+[*] Generated password: aB8@#zLq2!Xv9LmN
 [*] Password strength: Very strong password
-[*] Cracking time: 7.73 years => BlackHacker
+[*] Cracking time: 127.38 years => BlackHacker
 ```
 
----
-
-## Example Output (Dribs Directory Brute-Force)
+### Output Example: Directory Brute-Force
 
 ```text
 Url : http://testphp.vulnweb.com/
@@ -445,9 +376,7 @@ Enter file (use above files): admin.txt
 ...
 ```
 
----
-
-## Example Output (Reverse Shell)
+### Output Example: Reverse Shell
 
 ```text
 Enter port: 4444
@@ -461,18 +390,14 @@ $: download secrets.db
 [*] secrets.db file is Saved
 ```
 
----
-
-## Example Output (Steganography)
+### Output Example: Steganography
 
 ```text
 [*] Message hidden in image: output.png
 [**] Hidden MSG: This is a secret!
 ```
 
----
-
-## Example Output (Web Scraper)
+### Output Example: Web Scraper
 
 ```text
 Enter URL: https://example.com
@@ -481,11 +406,205 @@ Enter URL: https://example.com
 [*] Found: login page at /login
 ```
 
+### Output Example: Phishing Simulation
+
+```text
+[*] Phishing email template generated!
+[*] Fake login page running at http://localhost:8888
+[*] All captured credentials saved in phishing_results.txt
+```
+
+### Output Example: WiFi Deauth
+
+```text
+Network status
+Route table...
+Interface: wlan0
+Our IP: 192.168.1.101
+Our MAC: 00:11:22:33:44:55
+Gateway IP: 192.168.1.1
+Gateway MAC: aa:bb:cc:dd:ee:ff
+[*] Devices on subnet 192.168.1.0/24:
+IP: 192.168.1.1, MAC: aa:bb:cc:dd:ee:ff
+IP: 192.168.1.101, MAC: 00:11:22:33:44:55
+[*] Total devices found: 2
+
+Send deauth packets? This will disconnect your device. (y/n): y
+[+] Deauth packets sent!
+```
+
 ---
 
-## Final Notes
+## Customization & Extension
 
-For latest updates, advanced workflows, and full code reference, see [BWhacker on GitHub](https://github.com/abebaw977/BWhacker).  
-You are encouraged to explore, extend, and contribute to this beastly toolkit!
+- Add new scripts to Hacker/Attacking or DeveloperOptions
+- Update Banner.py to include new menu entries
+- Use AbuColor for consistent UI
+- Extend wordlist detection in dribs.py as needed
 
 ---
+
+## Module API Reference
+
+Please see individual `.py` files for API signatures and usage examples.  
+Key modules:  
+- PortScan(), SubDomain(), HttpFuzzer(), BruiteForceDir(), HashPassC(), PasswordGen(), BrutForceLogin(), SqlAtcking(), ReverseAttacker(), ReverseV(), PasswordManagers(), SryphtoSecretData(), PhishingAttack(), etc.
+
+---
+
+## Troubleshooting & FAQ
+
+- **Sudo required?** For packet/sniffing/ARP/WiFi modules.
+- **MySQL errors?** Ensure server is up, creds are correct, dependencies installed.
+- **Phishing module?** Use only in test/lab, never for real attacks.
+- **Custom wordlists?** Place in detected wordlist directory; see dribs.py.
+- **Banner.py won’t start?** Check dependencies, paths, permissions.
+
+---
+
+## Contributing
+
+- Fork, branch, PRs welcome
+- Issues for bugs, requests, ideas
+- Follow strong Python and security best practices
+
+---
+
+## License
+
+BSD 3-Clause "New" or "Revised" License  
+See [LICENSE](LICENSE).
+
+---
+
+## Credits
+
+- Project by [abebaw977](https://github.com/abebaw977)
+- AbuColor by [abu-color](https://pypi.org/project/abu-color/)
+- Inspired by open-source hacking tools and CTF labs.
+
+---
+
+## Appendix: Output Snapshots
+
+### PasswordGen Output
+
+```text
+Enter password length: 12
+Enter options (eg, letter=y or n, symbol=..., num=...): y y y
+[*] Generated password: aB8@#zLq2!Xv
+[*] Password strength: Very strong password
+[*] Cracking time: 7.73 years => BlackHacker
+```
+
+### Dribs Brute-Force Output
+
+```text
+Url : http://testphp.vulnweb.com/
+***** [green][bold]admin[bold][/green]
+***** [green][bold]images[bold][/green]
+Enter file (use above files): admin.txt
+[+] Gine Acsess From: http://testphp.vulnweb.com/admin
+[X] Not Found: http://testphp.vulnweb.com/backup
+...
+```
+
+### Reverse Shell Output
+
+```text
+Enter port: 4444
+[+] listening ....
+[*] Connected from: ('192.168.1.10', 52345)
+$: whoami
+root
+$: upload secret.txt
+[+] secret.txt uploaded successfully.
+$: download secrets.db
+[*] secrets.db file is Saved
+```
+
+### Steganography Output
+
+```text
+[*] Message hidden in image: output.png
+[**] Hidden MSG: This is a secret!
+```
+
+### Web Scraper Output
+
+```text
+Enter URL: https://example.com
+[*] Found 42 links containing 'https'
+[*] Search for: 'login'
+[*] Found: login page at /login
+```
+
+### Phishing Simulation Output
+
+```text
+[*] Phishing email template generated!
+[*] Fake login page running at http://localhost:8888
+[*] All captured credentials saved in phishing_results.txt
+```
+
+---
+
+## Appendix: Test Scenarios
+
+- Run Banner.py and interactively select each module.
+- Use Dribs for directory brute-forcing with custom wordlists.
+- Generate and crack passwords with PasswordGen and HashPasswordCrack.
+- Create, receive, and manage reverse shell connections.
+- Test SQL injection with VulnLogin.
+- Hide and reveal secret messages in images/audio.
+- Simulate phishing attacks with P20 in a safe lab.
+- Use developer utilities for file search, C++ compilation, and extraction.
+
+---
+
+## Appendix: Developer Notes
+
+- All modules are Python scripts and can be imported.
+- Banner.py is the main orchestrator.
+- AbuColor is used for enhanced CLI visuals.
+- Wordlists and test data should be placed as per module requirements.
+- Phishing, ARP, WiFi, and packet modules require root/admin.
+
+---
+
+## Appendix: Full Example Scripts
+
+### Full Recon and Attack
+
+```python
+from Attacking.P2SubDomainFinder import SubDomain
+from Attacking.P1PortScan import PortScan
+from Attacking.P5BruitForceDirectory import BruiteForceDir
+from Attacking.P4HttpFuzzer import HttpFuzzer
+from Attacking.P14SqlInjection import SqlAtcking
+from Attacking.P11BruiteForceLogin import BrutForceLogin
+from Attacking.P8HashPasswordCrack import HashPassC
+from Attacking.P9PasswordGen import PasswordGen
+from Attacking.P13ReverseAttacker import ReverseAttacker
+from Attacking.P13ReverseVictim import RreverseVictim
+from Attacking.P18Steganography import HideData, DecodeI
+from Attacking.P20PhishingStimulation import PhishingAttack
+
+SubDomain("target.com")
+PortScan("target.com")
+BruiteForceDir("target.com")
+HttpFuzzer()
+SqlAtcking("target.com/login")
+BrutForceLogin()
+HashPassC("hashes.txt", "wordlist.txt")
+PasswordGen()
+ReverseAttacker()
+RreverseVictim()
+HideData("input.png", "Secret message", "output.png")
+DecodeI("output.png")
+PhishingAttack()
+```
+
+---
+
+*This README is designed to be a full, practical reference for BWhacker users and contributors. For code updates, documentation, and the latest features, visit [BWhacker on GitHub](https://github.com/abebaw977/BWhacker).*
