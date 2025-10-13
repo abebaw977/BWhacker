@@ -16,6 +16,7 @@ from Attacking.P16PasswordManager import PasswordManagers
 from Attacking.P18Steganography import SryphtoSecretData
 from Attacking.P19AdvReverseAt import ReverseAttacker as AdvReverseAttacker
 from Attacking.P19AdvReverseVi import ReverseV
+from Attacking.P20PhishingStimulation import PhishingAttack
 from dribs import dribsAttack
 from DeveloperOptions.Tree import TreeSearch
 from DeveloperOptions.CppRunner import CppDev
@@ -26,9 +27,7 @@ from Attacking.P7ArpSpoofing import ArpSpoof
 from Attacking.P12WifiDeauth import WifiDeauth
 from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
 
-if os.geteuid() != 0:
-    print("This script requires root privileges to use scapy.")
-    sys.exit(1)
+
 
 def webRecon():
     try:
@@ -45,7 +44,7 @@ def webRecon():
 
 tool_sections = [
     {
-        "header": "*** Attacking Tools",
+        "header": "### Attacking Tools",
         "choices": [
             ("BruitForce for web directory", BruiteForceDir),
             ("Cracking hash password", HashPassC),
@@ -57,12 +56,13 @@ tool_sections = [
             ("Advanced Reverse Attacker", AdvReverseAttacker),
             ("Advanced Reverse Victim", ReverseV),
             ("Dribs Command", dribsAttack),
+            ("Phshing Attack ", PhishingAttack)
             ("Password Manager", PasswordManagers),
             ("Steganography Tool to hide data on image or audio", SryphtoSecretData),
         ]
     },
     {
-        "header": "*** Sniff Tools",
+        "header": "### Sniff Tools",
         "choices": [
             ("Sniff local packet", ""),
             ("Arp spoofing", "ArpSpoof"),
@@ -71,7 +71,7 @@ tool_sections = [
         ]
     },
     {
-        "header": "*** Developer Tools",
+        "header": "### Developer Tools",
         "choices": [
             ("Beast C++ runner", CppDev),
             ("Beast File search", TreeSearch),
@@ -79,7 +79,7 @@ tool_sections = [
         ]
     },
     {
-        "header": "*** Web Tools",
+        "header": "### Web Tools",
         "choices": [
             ("Port scaninng", PortScan),
             ("SubDomain Finder", SubDomain),
@@ -89,8 +89,9 @@ tool_sections = [
         ]
     },
     {
-        "header": "*** Other",
+        "header": "### Other",
         "choices": [
+            ("Show banner ",banner)
             ("to Exit enter 0", None)
         ]
     }
@@ -98,21 +99,26 @@ tool_sections = [
 
 def banner():
     os.system("clear")
-    border = AbuAll("#" * 60, bg="blue")
-    inb = AbuAll("*" *4,bg="red",sty="b")
-    print(border)
-    print(border)
-    print(AbuAll(f"{' '*20}{inb} BWAbuHacker {inb}{' '*20}", bg="blue", sty="b"))
-    print(border)
-    print(border)
-    idx = 1
+    b = r"""
+     ____          _                _
+    | __ )_      _| |__   __ _  ___| | _____ _ __
+    |  _ \ \ /\ / / '_ \ / _` |/ __| |/ / _ \ '__|
+    | |_) \ V  V /| | | | (_| | (__|   <  __/ |
+    |____/ \_/\_/ |_| |_|\__,_|\___|_|\_\___|_|
+    ╔═══════════════════════════════════════════════╗
+    ║           WEB Attacker and Scanner            ║
+    ║          Fast • Efficient • Powerful          ║
+    ╚═══════════════════════════════════════════════╝
+    """
+    print(AbuAll(f"{b}",bg="blue", sty="b"))
+    idx=1
     for section in tool_sections:
         print(AbuAll(section["header"], bg="green", sty="b"))
         for label, _ in section["choices"]:
             if label.lower().startswith("to exit"):
-                print(AbuAll(f"    0. {label}", bg="red", sty="b"))
+                print(f"   [0].",AbuAll(f"{label}", bg="red", sty="b"))
             else:
-                print(AbuAll(f"    {idx}. {label}", bg="red", sty="b"))
+                print(f"   [{idx}]",AbuAll(f"{label}", bg="red", sty="b"))
                 idx += 1
 
 def get_choice_function(choice_index):

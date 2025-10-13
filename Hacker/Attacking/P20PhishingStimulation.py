@@ -181,10 +181,7 @@ def beast_handler(*args):
             handle_post(self.path, self)
     Handler(*args)
 
-def main():
+def PhishingAttack():
     print(f"Phishing simulation server running at http://localhost:{PORT}/")
     with socketserver.TCPServer(("", PORT), beast_handler) as httpd:
         httpd.serve_forever()
-
-if __name__ == "__main__":
-    main()
