@@ -27,7 +27,33 @@ from Attacking.P7ArpSpoofing import ArpSpoof
 from Attacking.P12WifiDeauth import WifiDeauth
 from Attacking.P17AdvancedArpSpoofing import ArpSpoofAndSnoffing
 
+if os.geteuid() != 0:
+    print("This script requires root privileges to use scapy.")
+    sys.exit(1)
 
+def banner():
+    os.system("clear")
+    b = r"""
+     ____          _                _
+    | __ )_      _| |__   __ _  ___| | _____ _ __
+    |  _ \ \ /\ / / '_ \ / _` |/ __| |/ / _ \ '__|
+    | |_) \ V  V /| | | | (_| | (__|   <  __/ |
+    |____/ \_/\_/ |_| |_|\__,_|\___|_|\_\___|_|
+    ╔═══════════════════════════════════════════════╗
+    ║           WEB Attacker and Scanner            ║
+    ║          Fast • Efficient • Powerful          ║
+    ╚═══════════════════════════════════════════════╝
+    """
+    print(AbuAll(f"{b}",bg="blue", sty="b"))
+    idx=1
+    for section in tool_sections:
+        print(AbuAll(section["header"], bg="green", sty="b"))
+        for label, _ in section["choices"]:
+            if label.lower().startswith("to exit"):
+                print(f"   [0].",AbuAll(f"{label}", bg="red", sty="b"))
+            else:
+                print(f"   [{idx}]",AbuAll(f"{label}", bg="red", sty="b"))
+                idx += 1
 
 def webRecon():
     try:
@@ -56,7 +82,7 @@ tool_sections = [
             ("Advanced Reverse Attacker", AdvReverseAttacker),
             ("Advanced Reverse Victim", ReverseV),
             ("Dribs Command", dribsAttack),
-            ("Phshing Attack ", PhishingAttack)
+            ("Phshing Attack ", PhishingAttack),
             ("Password Manager", PasswordManagers),
             ("Steganography Tool to hide data on image or audio", SryphtoSecretData),
         ]
@@ -91,35 +117,13 @@ tool_sections = [
     {
         "header": "### Other",
         "choices": [
-            ("Show banner ",banner)
+            ("Show banner ",banner),
             ("to Exit enter 0", None)
         ]
     }
 ]
 
-def banner():
-    os.system("clear")
-    b = r"""
-     ____          _                _
-    | __ )_      _| |__   __ _  ___| | _____ _ __
-    |  _ \ \ /\ / / '_ \ / _` |/ __| |/ / _ \ '__|
-    | |_) \ V  V /| | | | (_| | (__|   <  __/ |
-    |____/ \_/\_/ |_| |_|\__,_|\___|_|\_\___|_|
-    ╔═══════════════════════════════════════════════╗
-    ║           WEB Attacker and Scanner            ║
-    ║          Fast • Efficient • Powerful          ║
-    ╚═══════════════════════════════════════════════╝
-    """
-    print(AbuAll(f"{b}",bg="blue", sty="b"))
-    idx=1
-    for section in tool_sections:
-        print(AbuAll(section["header"], bg="green", sty="b"))
-        for label, _ in section["choices"]:
-            if label.lower().startswith("to exit"):
-                print(f"   [0].",AbuAll(f"{label}", bg="red", sty="b"))
-            else:
-                print(f"   [{idx}]",AbuAll(f"{label}", bg="red", sty="b"))
-                idx += 1
+
 
 def get_choice_function(choice_index):
     idx = 1
