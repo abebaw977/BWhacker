@@ -6,3 +6,8 @@ PyGetWindow>=0.0.9
 psutil>=5.9.5
 tqdm>=4.65.0
 rich>=13.3.0
+requests
+flask
+mysql-connector-python
+pillow
+tqdm
