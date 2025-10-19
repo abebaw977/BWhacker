@@ -1,1 +1,10 @@
+abu-color
+requests
+rich
 flask
+mysql-connector-python
+pillow
+tqdm
+scapy
+aiohttp
+pytest

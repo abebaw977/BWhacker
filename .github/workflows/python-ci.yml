@@ -23,34 +23,52 @@ jobs:
     - name: Show repo files (debug)
       run: |
         echo "Working directory: $(pwd)"
+        echo "=== root listing ==="
         ls -la
+        echo "=== .github/workflows listing ==="
+        ls -la .github/workflows || true
 
-    - name: Upgrade pip
+    - name: Show Python info (debug)
+      run: |
+        python -V
+        which python || true
+        python -m site
+
+    - name: Upgrade pip (use python -m pip)
       run: python -m pip install --upgrade pip
 
-    - name: Install dependencies from requirements.txt
+    - name: Install dependencies (use python -m pip; prefer root/requirements.txt)
       run: |
+        set -e
         if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
+          echo "Installing from repo root requirements.txt"
+          python -m pip install -r requirements.txt
+        elif [ -f .github/workflows/requirements.txt ]; then
+          echo "Installing from .github/workflows/requirements.txt"
+          python -m pip install -r .github/workflows/requirements.txt
         else
-          echo "requirements.txt not found at repo root!"
-          ls -la .github/workflows || true
-          echo "Attempting to install from .github/workflows/requirements.txt"
-          if [ -f .github/workflows/requirements.txt ]; then
-            pip install -r .github/workflows/requirements.txt
-          else
-            echo "No requirements file found. Installing pytest only."
-            pip install pytest
-          fi
+          echo "No requirements.txt found; installing pytest only"
+          python -m pip install pytest
+        fi
+        # Ensure pytest is installed (install if not present)
+        python -c "import pkgutil, sys; print('pytest present:', pkgutil.find_loader('pytest') is not None)"
+        if ! python -c "import pkgutil; exit(0) if pkgutil.find_loader('pytest') else exit(1)"; then
+          echo "pytest not found after pip install; installing explicitly"
+          python -m pip install pytest
         fi
 
     - name: Show installed packages (debug)
-      run: pip list
-
-    - name: Run tests
       run: |
-        # run pytest; adjust path if tests are in a subdirectory, e.g., tests/
-        pytest -q --maxfail=1
-      # If tests are located elsewhere use: pytest path/to/tests
+        python -m pip --version
+        python -m pip list
 
-    # Optional: upload test results, coverage, etc.
+    - name: Show pytest version & path (debug)
+      run: |
+        python -m pytest --version || true
+        which pytest || true
+
+    - name: Run tests (use python -m pytest)
+      run: |
+        # use python -m pytest to ensure we run the interpreter-installed pytest
+        python -m pytest -q --maxfail=1
+      # If tests are in a subdirectory: python -m pytest tests/
