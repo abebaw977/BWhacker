@@ -6,6 +6,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:   # allows manual re-run from the Actions UI
 
 jobs:
   build:
@@ -18,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'  # adjust as needed
+        python-version: '3.10'
 
     - name: Show repo files (debug)
       run: |
@@ -37,7 +38,7 @@ jobs:
     - name: Upgrade pip (use python -m pip)
       run: python -m pip install --upgrade pip
 
-    - name: Install dependencies (use python -m pip; prefer root/requirements.txt)
+    - name: Install dependencies (use python -m pip; prefer repo root requirements.txt)
       run: |
         set -e
         if [ -f requirements.txt ]; then
@@ -50,12 +51,16 @@ jobs:
           echo "No requirements.txt found; installing pytest only"
           python -m pip install pytest
         fi
-        # Ensure pytest is installed (install if not present)
-        python -c "import pkgutil, sys; print('pytest present:', pkgutil.find_loader('pytest') is not None)"
-        if ! python -c "import pkgutil; exit(0) if pkgutil.find_loader('pytest') else exit(1)"; then
-          echo "pytest not found after pip install; installing explicitly"
-          python -m pip install pytest
-        fi
+        # Ensure pytest is installed (explicit check)
+        python - <<'PY'
+import importlib.util, sys
+if importlib.util.find_spec('pytest') is None:
+    print("pytest not detected; installing pytest")
+    import subprocess, sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pytest"])
+else:
+    print("pytest detected")
+PY
 
     - name: Show installed packages (debug)
       run: |
@@ -67,8 +72,12 @@ jobs:
         python -m pytest --version || true
         which pytest || true
 
-    - name: Run tests (use python -m pytest)
+    - name: Run tests if present
       run: |
-        # use python -m pytest to ensure we run the interpreter-installed pytest
-        python -m pytest -q --maxfail=1
-      # If tests are in a subdirectory: python -m pytest tests/
+        echo "Checking for tests/ directory..."
+        if [ -d "tests" ] && [ "$(ls -A tests 2>/dev/null)" ]; then
+          echo "Tests found. Running pytest..."
+          python -m pytest -q --maxfail=1
+        else
+          echo "No tests found in tests/; skipping pytest."
+        fi
