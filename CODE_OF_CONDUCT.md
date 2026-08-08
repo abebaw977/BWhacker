@@ -6,10 +6,10 @@ This file explains how to contact the project maintainer, report security issues
 ---
 
 ## Project Maintainer
-- **Name:** abebaw977
+- **Name:** Abebaw Getaye
 - **GitHub:** https://github.com/abebaw977
 - **Preferred contact:** Open a GitHub Issue (label `support` or `question`) or open a Pull Request for suggested fixes.
-- **Email (optional):** abebawgetaye620@gmail.com  
+- **Email (optional):** abebawmans@gmail.com 
 
 > Best way: create a GitHub Issue so the conversation is public, traceable, and linked to the repo.
 
@@ -63,4 +63,3 @@ If you find content in this repo that violates law, privacy, or GitHub policies 
 **Issue title:** `security: SQLi in P14SqlInjection.py - authenticated input`
 
 **Body**
-**Thank**
