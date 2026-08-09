@@ -1,5 +1,5 @@
 # .github/workflows/python-ci.yml
-name: Python CI
+name: Python & C CI
 
 on:
   push:
@@ -17,64 +17,52 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
-    - name: Show repo files (debug)
+    - name: Install C Compiler (GCC)
       run: |
-        echo "Working directory: $(pwd)"
-        echo "=== root listing ==="
-        ls -la
-        echo "=== .github/workflows listing ==="
-        ls -la .github/workflows || true
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc
 
-    - name: Show Python info (debug)
+    - name: Show tools info (debug)
       run: |
         python -V
-        which python || true
-        python -m site
+        gcc --version
 
-    - name: Upgrade pip (use python -m pip)
+    - name: Upgrade pip
       run: python -m pip install --upgrade pip
 
-    - name: Install dependencies (use python -m pip; prefer repo root requirements.txt)
+    - name: Install dependencies
       run: |
         set -e
         if [ -f requirements.txt ]; then
           echo "Installing from repo root requirements.txt"
           python -m pip install -r requirements.txt
-        elif [ -f .github/workflows/requirements.txt ]; then
-          echo "Installing from .github/workflows/requirements.txt"
-          python -m pip install -r .github/workflows/requirements.txt
         else
-          echo "No requirements.txt found; installing pytest only"
+          echo "No requirements.txt found; installing pytest"
           python -m pip install pytest
         fi
-        # Ensure pytest is installed (explicit check)
-        python - <<'PY'
-import importlib.util, sys
-if importlib.util.find_spec('pytest') is None:
-    print("pytest not detected; installing pytest")
-    import subprocess, sys
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "pytest"])
-else:
-    print("pytest detected")
-PY
 
-    - name: Show installed packages (debug)
+    - name: Compile C Projects (if present)
       run: |
-        python -m pip --version
-        python -m pip list
-
-    - name: Show pytest version & path (debug)
-      run: |
-        python -m pytest --version || true
-        which pytest || true
+        if [ -d "C_Projects" ]; then
+          echo "Compiling C Projects..."
+          mkdir -p C_Projects/bin
+          for file in C_Projects/*.c; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file" .c)
+              echo "Compiling $file -> C_Projects/bin/$filename"
+              gcc "$file" -o "C_Projects/bin/$filename"
+            fi
+          done
+        else
+          echo "C_Projects directory not found, skipping..."
+        fi
 
     - name: Run tests if present
       run: |
-        echo "Checking for tests/ directory..."
         if [ -d "tests" ] && [ "$(ls -A tests 2>/dev/null)" ]; then
           echo "Tests found. Running pytest..."
           python -m pytest -q --maxfail=1
